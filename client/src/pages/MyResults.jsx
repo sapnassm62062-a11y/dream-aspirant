@@ -9,7 +9,7 @@ export default function MyResults() {
   const getResults = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/result/my-results",
+        "http://dream-aspirant.onrender.com/api/result/my-results",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -57,7 +57,7 @@ export default function MyResults() {
               </p>
 
               <a
-                href={`http://localhost:5000/api/result/certificate/${item._id}`}
+                href={`http://dream-aspirant.onrender.com/api/result/certificate/${item._id}`}
                 target="_blank"
                 rel="noreferrer"
               >

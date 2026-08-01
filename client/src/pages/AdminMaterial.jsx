@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../services/api";
 
 export default function AdminMaterial() {
   const [materials, setMaterials] = useState([]);
@@ -15,7 +15,7 @@ export default function AdminMaterial() {
 
   const getMaterials = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/material");
+      const res = await API.get("/api/admin/material");
       setMaterials(res.data);
     } catch (err) {
       console.log(err);
@@ -35,8 +35,8 @@ export default function AdminMaterial() {
 
     try {
       if (editId) {
-        await axios.put(
-          `http://localhost:5000/api/admin/material/${editId}`,
+       await API.put(
+  `/api/admin/material/${editId}`,
           form,
           {
             headers: {
@@ -53,8 +53,8 @@ export default function AdminMaterial() {
         formData.append("subject", form.subject);
         formData.append("file", file);
 
-        await axios.post(
-          "http://localhost:5000/api/admin/material/upload",
+        await API.post(
+  "/api/admin/material/upload",
           formData,
           {
             headers: {
@@ -95,8 +95,8 @@ export default function AdminMaterial() {
 
   const deleteMaterial = async (id) => {
     try {
-      await axios.delete(
-        `http://localhost:5000/api/admin/material/${id}`,
+      await API.delete(
+  `/api/admin/material/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -179,7 +179,7 @@ export default function AdminMaterial() {
             <p>Type: {item.type}</p>
 
             <a
-              href={`http://localhost:5000${item.fileUrl}`}
+              href={`https://dream-aspirant.onrender.com${item.fileUrl}`}
               target="_blank"
               rel="noreferrer"
             >

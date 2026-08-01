@@ -10,7 +10,7 @@ export default function MockTest() {
 
   const getQuestions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/mock");
+      const res = await axios.get("http://dream-aspirant.onrender.com/api/admin/mock");
       setQuestions(res.data);
     } catch (err) {
       console.log(err);
@@ -38,7 +38,7 @@ export default function MockTest() {
 
     try {
       await axios.post(
-        "http://localhost:5000/api/result/save",
+        "http://dream-aspirant.onrender.com/api/result/save",
         {
           exam: questions[0]?.exam || "Mock Test",
           score: total,

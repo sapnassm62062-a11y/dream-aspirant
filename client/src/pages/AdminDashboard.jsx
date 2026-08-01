@@ -33,7 +33,7 @@ export default function AdminDashboard(){
 
       const response = await axios.get(
 
-        "http://localhost:5000/api/admin/stats",
+        "http://dream-aspirant.onrender.com/api/admin/stats",
 
         {
 
@@ -77,7 +77,7 @@ export default function AdminDashboard(){
 
       const response = await axios.get(
 
-        "http://localhost:5000/api/admin/users",
+        "http://dream-aspirant.onrender.com/api/admin/users",
 
         {
 

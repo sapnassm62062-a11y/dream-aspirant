@@ -7,7 +7,7 @@ export default function Material() {
   const getMaterials = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:5000/api/admin/material"
+        "http://dream-aspirant.onrender.com/api/admin/material"
       );
       setMaterials(response.data);
     } catch (error) {
@@ -42,7 +42,7 @@ export default function Material() {
             <p>Type: {item.type}</p>
 
             <a
-              href={`http://localhost:5000${item.fileUrl}`}
+              href={`http://dream-aspirant.onrender.com${item.fileUrl}`}
               target="_blank"
               rel="noreferrer"
             >
@@ -50,7 +50,7 @@ export default function Material() {
             </a>
 
             <a
-              href={`http://localhost:5000${item.fileUrl}`}
+              href={`http://dream-aspirant.onrender.com${item.fileUrl}`}
               download
             >
               <button className="primary-btn">Download PDF</button>

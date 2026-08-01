@@ -27,7 +27,7 @@ const token=localStorage.getItem("token");
 
 const response=await axios.get(
 
-"http://localhost:5000/api/auth/profile",
+"http://dream-aspirant.onrender.com/api/auth/profile",
 
 {
 
@@ -105,7 +105,7 @@ const token=localStorage.getItem("token");
 
 await axios.put(
 
-"http://localhost:5000/api/auth/profile",
+"http://dream-aspirant.onrender.com/api/auth/profile",
 
 {
 

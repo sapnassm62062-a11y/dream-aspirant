@@ -30,7 +30,7 @@ export default function AdminExam(){
 
       const response = await axios.get(
 
-        "http://localhost:5000/api/admin/exam"
+        "http://dream-aspirant.onrender.com/api/admin/exam"
 
       );
 
@@ -101,7 +101,7 @@ export default function AdminExam(){
 
         await axios.put(
 
-          `http://localhost:5000/api/admin/exam/${editId}`,
+          `http://dream-aspirant.onrender.com/api/admin/exam/${editId}`,
 
           exam,
 
@@ -128,7 +128,7 @@ export default function AdminExam(){
 
         await axios.post(
 
-          "http://localhost:5000/api/admin/exam",
+          "http://dream-aspirant.onrender.com/api/admin/exam",
 
           exam,
 
@@ -229,7 +229,7 @@ export default function AdminExam(){
 
       await axios.delete(
 
-        `http://localhost:5000/api/admin/exam/${id}`,
+        `http://dream-aspirant.onrender.com/api/admin/exam/${id}`,
 
         {
 

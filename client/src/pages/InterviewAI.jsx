@@ -40,7 +40,7 @@ const token=localStorage.getItem("token");
 
 const res=await axios.get(
 
-"http://localhost:5000/api/auth/access",
+"http://dream-aspirant.onrender.com/api/auth/access",
 
 {
 

@@ -14,7 +14,7 @@ export default function AdminUsers(){
     try{
 
       const response = await axios.get(
-        "http://localhost:5000/api/admin/users"
+        "http://dream-aspirant.onrender.com/api/admin/users"
       );
 
 

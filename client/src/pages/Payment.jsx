@@ -48,7 +48,7 @@ amount = 10;
 
 const orderResponse = await axios.post(
 
-"http://localhost:5000/api/payment/create-order",
+"http://dream-aspirant.onrender.com/api/payment/create-order",
 
 {
 
@@ -116,7 +116,7 @@ handler:async function(response){
 
 await axios.post(
 
-"http://localhost:5000/api/payment/verify",
+"http://dream-aspirant.onrender.com/api/payment/verify",
 
 {
 

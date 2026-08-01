@@ -42,7 +42,7 @@ export default function Signup(){
 
       const res = await fetch(
 
-        "http://localhost:5000/api/auth/register",
+        "http://dream-aspirant.onrender.com/api/auth/register",
 
         {
 

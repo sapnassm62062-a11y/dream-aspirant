@@ -12,7 +12,7 @@ function ChangePassword() {
       const token = localStorage.getItem("token");
 
       const res = await axios.put(
-        "http://localhost:5000/api/auth/change-password",
+        "http://dream-aspirant.onrender.com/api/auth/change-password",
         {
           oldPassword,
           newPassword,

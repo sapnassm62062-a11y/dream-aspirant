@@ -37,7 +37,7 @@ const token=localStorage.getItem("token");
 
 const user=await axios.get(
 
-"http://localhost:5000/api/auth/profile",
+"http://dream-aspirant.onrender.com/api/auth/profile",
 
 {
 
@@ -61,14 +61,14 @@ setProfile(user.data);
 
 const exam=await axios.get(
 
-"http://localhost:5000/api/admin/exam"
+"http://dream-aspirant.onrender.com/api/admin/exam"
 
 );
 
 
 const subject=await axios.get(
 
-"http://localhost:5000/api/admin/subject"
+"http://dream-aspirant.onrender.com/api/admin/subject"
 
 );
 
@@ -76,7 +76,7 @@ const subject=await axios.get(
 
 const material=await axios.get(
 
-"http://localhost:5000/api/admin/material"
+"http://dream-aspirant.onrender.com/api/admin/material"
 
 );
 

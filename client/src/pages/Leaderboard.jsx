@@ -7,7 +7,7 @@ export default function Leaderboard() {
   const getLeaderboard = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/result/leaderboard"
+        "http://dream-aspirant.onrender.com/api/result/leaderboard"
       );
       setLeaders(res.data);
     } catch (err) {

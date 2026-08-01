@@ -19,7 +19,7 @@ export default function AdminMockTest() {
 
   const getQuestions = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/admin/mock");
+      const res = await axios.get("http://dream-aspirant.onrender.com/api/admin/mock");
       setQuestions(res.data);
     } catch (err) {
       console.log(err);
@@ -40,7 +40,7 @@ export default function AdminMockTest() {
     try {
       if (editId) {
         await axios.put(
-          `http://localhost:5000/api/admin/mock/${editId}`,
+          `http://dream-aspirant.onrender.com/api/admin/mock/${editId}`,
           form,
           {
             headers: {
@@ -52,7 +52,7 @@ export default function AdminMockTest() {
         alert("Question updated successfully");
       } else {
         await axios.post(
-          "http://localhost:5000/api/admin/mock",
+          "http://dream-aspirant.onrender.com/api/admin/mock",
           form,
           {
             headers: {
@@ -99,7 +99,7 @@ export default function AdminMockTest() {
   const deleteQuestion = async (id) => {
     try {
       await axios.delete(
-        `http://localhost:5000/api/admin/mock/${id}`,
+        `http://dream-aspirant.onrender.com/api/admin/mock/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

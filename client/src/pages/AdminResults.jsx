@@ -8,7 +8,7 @@ export default function AdminResults() {
   const getResults = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/admin/results",
+        "http://dream-aspirant.onrender.com/api/admin/results",
         {
           headers: {
             Authorization: `Bearer ${token}`,

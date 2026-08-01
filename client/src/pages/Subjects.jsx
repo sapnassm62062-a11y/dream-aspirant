@@ -14,7 +14,7 @@ useEffect(()=>{
 
 
 axios.get(
-"http://localhost:5000/api/admin/subject"
+"http://dream-aspirant.onrender.com/api/admin/subject"
 )
 
 .then(res=>{

@@ -31,7 +31,7 @@ export default function AdminSubject(){
 
       const response = await axios.get(
 
-        "http://localhost:5000/api/admin/subject"
+        "http://dream-aspirant.onrender.com/api/admin/subject"
 
       );
 
@@ -102,7 +102,7 @@ export default function AdminSubject(){
 
         await axios.put(
 
-          `http://localhost:5000/api/admin/subject/${editId}`,
+          `http://dream-aspirant.onrender.com/api/admin/subject/${editId}`,
 
           subject,
 
@@ -124,7 +124,7 @@ export default function AdminSubject(){
 
         await axios.post(
 
-          "http://localhost:5000/api/admin/subject",
+          "http://dream-aspirant.onrender.com/api/admin/subject",
 
           subject,
 
@@ -215,7 +215,7 @@ export default function AdminSubject(){
 
       await axios.delete(
 
-        `http://localhost:5000/api/admin/subject/${id}`,
+        `http://dream-aspirant.onrender.com/api/admin/subject/${id}`,
 
         {
 
