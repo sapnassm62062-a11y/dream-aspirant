@@ -42,7 +42,7 @@ export default function Signup(){
 
       const res = await fetch(
 
-        "https://dream-aspirant.onrender.com/api/auth/register",
+        "https://dream-aspirant.onrender.com/api/auth/signup",
 
         {
 
