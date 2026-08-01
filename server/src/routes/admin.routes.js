@@ -1,21 +1,16 @@
 const express = require("express");
 const router = express.Router();
 
-
-const Exam = require("../models/exam.model")
-const Exam = require("../models/Subject.model")
+const Exam = require("../models/exam.model");
+const Subject = require("../models/Subject.model");
 const Material = require("../models/material.model");
-const User = require("../models/User.model")
-
+const User = require("../models/User.model");
+const Mock = require("../models/mock.model");
+const Result = require("../models/Result.model");
 
 const authMiddleware = require("../middleware/auth.middleware");
 const adminMiddleware = require("../middleware/admin.middleware");
 const upload = require("../middleware/upload.middleware");
-const Mock = require("../models/mock.model");
-const Result = require("../models/Result.model");
-
-
-
 
 
 // =======================
@@ -23,43 +18,28 @@ const Result = require("../models/Result.model");
 // =======================
 
 router.post(
-    "/exam",
-    authMiddleware,
-    adminMiddleware,
-    async(req,res)=>{
+  "/exam",
+  authMiddleware,
+  adminMiddleware,
+  async (req, res) => {
+    try {
 
-    try{
+      const exam = await Exam.create(req.body);
 
+      res.status(201).json({
+        message: "Exam Added Successfully",
+        exam
+      });
 
-        const exam = await Exam.create(req.body);
+    } catch (error) {
 
-
-        res.status(201).json({
-
-            message:"Exam Added Successfully",
-            exam
-
-        });
-
-
-
-    }catch(error){
-
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message: error.message
+      });
 
     }
-
-});
-
-
-
-
+  }
+);
 
 
 // =======================
@@ -67,39 +47,23 @@ router.post(
 // =======================
 
 router.get(
-    "/exam",
-    async(req,res)=>{
+  "/exam",
+  async (req, res) => {
+    try {
 
+      const exams = await Exam.find();
 
-    try{
+      res.json(exams);
 
+    } catch (error) {
 
-        const exams = await Exam.find();
-
-
-        res.json(exams);
-
-
-
-    }catch(error){
-
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
-
-
-});
-
-
-
-
-
+  }
+);
 
 
 // =======================
@@ -107,104 +71,61 @@ router.get(
 // =======================
 
 router.get(
-    "/exam/:id",
-    async(req,res)=>{
-
+  "/exam/:id",
+  async(req,res)=>{
 
     try{
 
+      const exam = await Exam.findById(req.params.id);
 
-        const exam = await Exam.findById(
-            req.params.id
-        );
+      if(!exam){
+        return res.status(404).json({
+          message:"Exam not found"
+        });
+      }
 
-
-
-        if(!exam){
-
-            return res.status(404).json({
-
-                message:"Exam not found"
-
-            });
-
-        }
-
-
-
-        res.json(exam);
-
-
+      res.json(exam);
 
     }catch(error){
 
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
 
-
-});
-
-
-
-
-
-
-
+  }
+);
 
 // =======================
 // ADD SUBJECT
 // =======================
 
 router.post(
-    "/subject",
-    authMiddleware,
-    adminMiddleware,
-    async(req,res)=>{
-
+  "/subject",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
 
     try{
 
+      const subject = await Subject.create(req.body);
 
-        const subject = await Subject.create(req.body);
-
-
-
-        res.status(201).json({
-
-            message:"Subject Added Successfully",
-
-            subject
-
-        });
-
-
+      res.status(201).json({
+        message:"Subject Added Successfully",
+        subject
+      });
 
     }catch(error){
 
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
 
-
-});
-
-
-
-
-
+  }
+);
 
 
 // =======================
@@ -212,39 +133,25 @@ router.post(
 // =======================
 
 router.get(
-    "/subject",
-    async(req,res)=>{
-
+  "/subject",
+  async(req,res)=>{
 
     try{
 
+      const subjects = await Subject.find();
 
-        const subjects = await Subject.find();
-
-
-        res.json(subjects);
-
-
+      res.json(subjects);
 
     }catch(error){
 
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
 
-
-});
-
-
-
-
-
+  }
+);
 
 
 // =======================
@@ -252,49 +159,30 @@ router.get(
 // =======================
 
 router.post(
-    "/material",
-    authMiddleware,
-    adminMiddleware,
-    async(req,res)=>{
-
+  "/material",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
 
     try{
 
+      const material = await Material.create(req.body);
 
-        const material = await Material.create(req.body);
-
-
-
-        res.status(201).json({
-
-            message:"Material Added Successfully",
-
-            material
-
-        });
-
-
+      res.status(201).json({
+        message:"Material Added Successfully",
+        material
+      });
 
     }catch(error){
 
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
 
-
-});
-
-
-
-
-
-
+  }
+);
 
 
 // =======================
@@ -302,39 +190,25 @@ router.post(
 // =======================
 
 router.get(
-    "/material",
-    async(req,res)=>{
-
+  "/material",
+  async(req,res)=>{
 
     try{
 
+      const material = await Material.find();
 
-        const material = await Material.find();
-
-
-        res.json(material);
-
-
+      res.json(material);
 
     }catch(error){
 
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
 
-
-});
-
-
-
-
-
+  }
+);
 
 
 // =======================
@@ -342,388 +216,293 @@ router.get(
 // =======================
 
 router.get(
-    "/users",
-    authMiddleware,
-    adminMiddleware,
-    async(req,res)=>{
-
+  "/users",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
 
     try{
 
-
-        const users = await User
+      const users = await User
         .find()
         .select("-password");
 
-
-
-        res.json(users);
-
-
+      res.json(users);
 
     }catch(error){
 
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
 
-
-});
-
-// DELETE EXAM
-
-router.delete(
-"/exam/:id",
-authMiddleware,
-adminMiddleware,
-async(req,res)=>{
-
-    try{
-
-        await Exam.findByIdAndDelete(req.params.id);
-
-        res.json({
-            message:"Exam Deleted Successfully"
-        });
-
-
-    }catch(error){
-
-        res.status(500).json({
-            message:error.message
-        });
-
-    }
-
-});
-
-
-
-
-// DELETE SUBJECT
-
-router.delete(
-"/subject/:id",
-authMiddleware,
-adminMiddleware,
-async(req,res)=>{
-
-    try{
-
-        await Subject.findByIdAndDelete(req.params.id);
-
-        res.json({
-            message:"Subject Deleted Successfully"
-        });
-
-
-    }catch(error){
-
-        res.status(500).json({
-            message:error.message
-        });
-
-    }
-
-});
-
-
-
-
-// DELETE MATERIAL
-
-router.delete(
-"/material/:id",
-authMiddleware,
-adminMiddleware,
-async(req,res)=>{
-
-    try{
-
-        await Material.findByIdAndDelete(req.params.id);
-
-        res.json({
-            message:"Material Deleted Successfully"
-        });
-
-
-    }catch(error){
-
-        res.status(500).json({
-            message:error.message
-        });
-
-    }
-
-});
-
-// UPDATE EXAM
-
-router.put(
-"/exam/:id",
-authMiddleware,
-adminMiddleware,
-async(req,res)=>{
-
-
-try{
-
-
-const exam = await Exam.findByIdAndUpdate(
-
-req.params.id,
-
-req.body,
-
-{
-new:true
-}
-
+  }
 );
 
 
+// =======================
+// DELETE EXAM
+// =======================
 
-res.json({
+router.delete(
+  "/exam/:id",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
 
-message:"Exam Updated Successfully",
+    try{
 
-exam
+      await Exam.findByIdAndDelete(req.params.id);
 
-});
+      res.json({
+        message:"Exam Deleted Successfully"
+      });
+
+    }catch(error){
+
+      res.status(500).json({
+        message:error.message
+      });
+
+    }
+
+  }
+);
 
 
+// =======================
+// DELETE SUBJECT
+// =======================
 
-}catch(error){
+router.delete(
+  "/subject/:id",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
+
+    try{
+
+      await Subject.findByIdAndDelete(req.params.id);
+
+      res.json({
+        message:"Subject Deleted Successfully"
+      });
+
+    }catch(error){
+
+      res.status(500).json({
+        message:error.message
+      });
+
+    }
+
+  }
+);
 
 
-res.status(500).json({
+// =======================
+// DELETE MATERIAL
+// =======================
 
-message:error.message
+router.delete(
+  "/material/:id",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
 
-});
+    try{
+
+      await Material.findByIdAndDelete(req.params.id);
+
+      res.json({
+        message:"Material Deleted Successfully"
+      });
+
+    }catch(error){
+
+      res.status(500).json({
+        message:error.message
+      });
+
+    }
+
+  }
+);
 
 
-}
+// =======================
+// UPDATE EXAM
+// =======================
+
+router.put(
+  "/exam/:id",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
+
+    try{
+
+      const exam = await Exam.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new:true
+        }
+      );
+
+      res.json({
+        message:"Exam Updated Successfully",
+        exam
+      });
+
+    }catch(error){
+
+      res.status(500).json({
+        message:error.message
+      });
+
+    }
+
+  }
+);
 
 
-});
+// =======================
 // UPDATE SUBJECT
+// =======================
 
 router.put(
-"/subject/:id",
-authMiddleware,
-adminMiddleware,
-async(req,res)=>{
+  "/subject/:id",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
 
     try{
 
+      const subject = await Subject.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new:true
+        }
+      );
 
-        const subject = await Subject.findByIdAndUpdate(
-
-            req.params.id,
-
-            req.body,
-
-            {
-                new:true
-            }
-
-        );
-
-
-        res.json({
-
-            message:"Subject Updated Successfully",
-
-            subject
-
-        });
-
-
+      res.json({
+        message:"Subject Updated Successfully",
+        subject
+      });
 
     }catch(error){
 
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
 
-});
+  }
+);
+
+
+// =======================
 // UPDATE MATERIAL
+// =======================
 
 router.put(
-"/material/:id",
-authMiddleware,
-adminMiddleware,
-async(req,res)=>{
+  "/material/:id",
+  authMiddleware,
+  adminMiddleware,
+  async(req,res)=>{
 
     try{
 
+      const material = await Material.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+          new:true
+        }
+      );
 
-        const material = await Material.findByIdAndUpdate(
-
-            req.params.id,
-
-            req.body,
-
-            {
-                new:true
-            }
-
-        );
-
-
-        res.json({
-
-            message:"Material Updated Successfully",
-
-            material
-
-        });
-
-
+      res.json({
+        message:"Material Updated Successfully",
+        material
+      });
 
     }catch(error){
 
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
+      res.status(500).json({
+        message:error.message
+      });
 
     }
 
-});
-// UPDATE MATERIAL
-
-router.put(
-"/material/:id",
-authMiddleware,
-adminMiddleware,
-async(req,res)=>{
-
-    try{
+  }
+);
 
 
-        const material = await Material.findByIdAndUpdate(
-
-            req.params.id,
-
-            req.body,
-
-            {
-                new:true
-            }
-
-        );
-
-
-        res.json({
-
-            message:"Material Updated Successfully",
-
-            material
-
-        });
-
-
-
-    }catch(error){
-
-
-        res.status(500).json({
-
-            message:error.message
-
-        });
-
-
-    }
-
-});
-
+// =======================
 // UPLOAD MATERIAL PDF
+// =======================
 
 router.post(
-"/material/upload",
-authMiddleware,
-adminMiddleware,
-upload.single("file"),
-async(req,res)=>{
+  "/material/upload",
+  authMiddleware,
+  adminMiddleware,
+  upload.single("file"),
+  async(req,res)=>{
+
+    try{
+
+      const {
+        title,
+        type,
+        subject
+      } = req.body;
 
 
-try{
+      if(!req.file){
+
+        return res.status(400).json({
+          message:"PDF file required"
+        });
+
+      }
 
 
-const {title,type,subject}=req.body;
+      const material = await Material.create({
+
+        title,
+        type,
+        subject,
+
+        fileUrl:
+        `/uploads/materials/${req.file.filename}`
+
+      });
 
 
+      res.status(201).json({
 
-if(!req.file){
+        message:"Material Uploaded Successfully",
 
-return res.status(400).json({
+        material
 
-message:"PDF file required"
-
-});
-
-}
+      });
 
 
+    }catch(error){
 
+      res.status(500).json({
+        message:error.message
+      });
 
-const material = await Material.create({
+    }
 
-title:title,
+  }
+);
 
-type:type,
-
-subject:subject,
-
-fileUrl:`/uploads/materials/${req.file.filename}`
-
-});
-
-
-
-
-res.status(201).json({
-
-message:"Material Uploaded Successfully",
-
-material
-
-});
-
-
-
-}catch(error){
-
-
-res.status(500).json({
-
-message:error.message
-
-});
-
-
-}
-
-
-});
 
 // =======================
 // ADD MOCK QUESTION
@@ -733,109 +512,179 @@ router.post(
   "/mock",
   authMiddleware,
   adminMiddleware,
-  async (req, res) => {
-    try {
+  async(req,res)=>{
+
+    try{
+
       const mock = await Mock.create(req.body);
 
       res.status(201).json({
-        message: "Question Added Successfully",
-        mock,
+
+        message:"Question Added Successfully",
+
+        mock
+
       });
-    } catch (error) {
+
+    }catch(error){
+
       res.status(500).json({
-        message: error.message,
+        message:error.message
       });
+
     }
+
   }
 );
 
+
 // =======================
-// GET ALL MOCK QUESTIONS
+// GET MOCK QUESTIONS
 // =======================
 
-router.get("/mock", async (req, res) => {
-  try {
-    const questions = await Mock.find().sort({ createdAt: -1 });
+router.get(
+  "/mock",
+  async(req,res)=>{
 
-    res.json(questions);
-  } catch (error) {
-    res.status(500).json({
-      message: error.message,
-    });
+    try{
+
+      const questions =
+      await Mock.find()
+      .sort({
+        createdAt:-1
+      });
+
+
+      res.json(questions);
+
+
+    }catch(error){
+
+      res.status(500).json({
+        message:error.message
+      });
+
+    }
+
   }
-});
+);
+
 
 // =======================
-// UPDATE MOCK QUESTION
+// UPDATE MOCK
 // =======================
 
 router.put(
   "/mock/:id",
   authMiddleware,
   adminMiddleware,
-  async (req, res) => {
-    try {
-      const mock = await Mock.findByIdAndUpdate(
+  async(req,res)=>{
+
+    try{
+
+      const mock =
+      await Mock.findByIdAndUpdate(
         req.params.id,
         req.body,
-        { new: true }
+        {
+          new:true
+        }
       );
 
+
       res.json({
-        message: "Question Updated Successfully",
-        mock,
+
+        message:"Question Updated Successfully",
+
+        mock
+
       });
-    } catch (error) {
+
+
+    }catch(error){
+
       res.status(500).json({
-        message: error.message,
+        message:error.message
       });
+
     }
+
   }
 );
 
+
 // =======================
-// DELETE MOCK QUESTION
+// DELETE MOCK
 // =======================
 
 router.delete(
   "/mock/:id",
   authMiddleware,
   adminMiddleware,
-  async (req, res) => {
-    try {
-      await Mock.findByIdAndDelete(req.params.id);
+  async(req,res)=>{
+
+    try{
+
+      await Mock.findByIdAndDelete(
+        req.params.id
+      );
+
 
       res.json({
-        message: "Question Deleted Successfully",
+
+        message:"Question Deleted Successfully"
+
       });
-    } catch (error) {
+
+
+    }catch(error){
+
       res.status(500).json({
-        message: error.message,
+        message:error.message
       });
+
     }
+
   }
 );
 
+
 // =======================
-// GET ALL MOCK TEST RESULTS
+// GET ALL RESULTS
 // =======================
 
 router.get(
   "/results",
   authMiddleware,
   adminMiddleware,
-  async (req, res) => {
-    try {
-      const results = await Result.find()
-        .populate("user", "name email phone")
-        .sort({ createdAt: -1 });
+  async(req,res)=>{
+
+    try{
+
+      const results =
+      await Result.find()
+      .populate(
+        "user",
+        "name email phone"
+      )
+      .sort({
+        createdAt:-1
+      });
+
 
       res.json(results);
-    } catch (error) {
+
+
+    }catch(error){
+
       res.status(500).json({
-        message: error.message,
+        message:error.message
       });
+
     }
+
   }
 );
+
+
 module.exports = router;
