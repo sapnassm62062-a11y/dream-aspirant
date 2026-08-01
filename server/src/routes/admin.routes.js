@@ -2,12 +2,11 @@ const express = require("express");
 const router = express.Router();
 
 const Exam = require("../models/exam.model");
-const Subject = require("../models/Subject.model");
+const Subject = require("../models/subject.model");
 const Material = require("../models/material.model");
-const User = require("../models/User.model");
+const User = require("../models/user.model");
 const Mock = require("../models/mock.model");
-const Result = require("../models/Result.model");
-
+const Result = require("../models/result.model");
 const authMiddleware = require("../middleware/auth.middleware");
 const adminMiddleware = require("../middleware/admin.middleware");
 const upload = require("../middleware/upload.middleware");
